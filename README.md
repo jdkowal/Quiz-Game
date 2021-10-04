@@ -1,2 +1,2 @@
-# Quiz-Game
-Quiz game! 
+# QuizGame
+Quiz Game! 
