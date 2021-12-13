@@ -4,6 +4,12 @@ var answerButtons = document.getElementById('answer-buttons');
 var timer = document.getElementById('timer')
 var changeButton = document.getElementById('ChangeButton');
 var answerButton = document.getElementsByClassName('answer-button');
+let currentQuestionIndex = 0
+let answer1 = document.getElementById('ans1');
+let answer2 = document.getElementById('ans2');
+let answer3 = document.getElementById('ans3');
+let answer4 = document.getElementById('ans4');
+let questionEl = document.getElementById('question');
 
 // // var score = questions[0];
 var time = 60;
@@ -11,7 +17,7 @@ var time = 60;
 // var currentQuestion = -1;
 
 function runTimer(){
-currentTimer= setTimeout(() => {
+    currentTimer= setTimeout(() => {
         time--
         timer.innerHTML = time
         if(time > 0){
@@ -61,23 +67,41 @@ const questions = [
     },
 ]
 
-let finalQuestion = questions.length
-let answer1 = document.getElementById('ans1');
-let answer2 = document.getElementById('ans2');
-let answer3 = document.getElementById('ans3');
-let answer4 = document.getElementById('ans4');
-let questionEl = document.getElementById('question');
-console.log(questions[0].answers[0].text)
+let finalQuestion = questions.length;
+let quizAnswer = questions[currentQuestionIndex].answers[currentQuestionIndex].correct;
+
+
 function showQuestions(){
+    var currentQuestion = questions[currentQuestionIndex].question
     if (finalQuestion > 0){
-        questionEl.textContent = questions[0].question;
+        questionEl.textContent = currentQuestion;
         answer1.textContent = questions[0].answers[0].text;
         answer2.textContent = questions[0].answers[1].text;
         answer3.textContent = questions[0].answers[2].text;
         answer4.textContent = questions[0].answers[3].text;
+        
+    } if (finalQuestion === 1) {
+        var currentQuestion = questions[currentQuestionIndex]
+        answer1.textContent = questions[1].answers[0].text;
+        answer2.textContent = questions[1].answers[1].text;
+        answer3.textContent = questions[1].answers[2].text;
+        answer4.textContent = questions[1].answers[3].text;
+    } if (finalQuestion === 2) {
+        var currentQuestion = questions[currentQuestionIndex]
+        answer1.textContent = questions[2].answers[0].text;
+        answer2.textContent = questions[2].answers[1].text;
+        answer3.textContent = questions[2].answers[2].text;
+        answer4.textContent = questions[2].answers[3].text;
+    } if (finalQuestion === 3) {
+        var currentQuestion = questions[currentQuestionIndex]
+        answer1.textContent = questions[3].answers[0].text;
+        answer2.textContent = questions[3].answers[1].text;
+        answer3.textContent = questions[3].answers[2].text;
+        answer4.textContent = questions[3].answers[3].text;
     }
-
 }
+
+
 
 function startQuiz() {
     startButton.classList.add('hide');
@@ -85,21 +109,15 @@ function startQuiz() {
     runTimer();
     console.log('start');
     showQuestions()
-
-    // for (i=0; )
-
-
-nextQuestion();
-
+    nextQuestion();
 }
 
-function nextQuestion(){
-    currentQuestion++
-    if (currentQuestion > questions.length){
-        showScore();
-    } else {
-        questionsCon.innerHTML= questions[currentQuestion].text
+function nextQuestion(e){
+    let selectedButton = e.target;
+    if ( selectedButton === true){
+        currentQuestionIndex++
     }
+    console.log(selectedButton)
 }
 
 
